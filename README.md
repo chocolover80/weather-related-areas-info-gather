@@ -63,9 +63,80 @@ When clicking any of the cities gathered on the previous modal, a mini modal wil
 
 **Image 6**
 
-![Modal Weather Info with 15 cities](https://raw.githubusercontent.com/chocolover80/weather-related-areas-info-gather/main/documentation/images/details-modal-example.PNG)
+![Details Modal Example](https://raw.githubusercontent.com/chocolover80/weather-related-areas-info-gather/main/documentation/images/details-modal-example.PNG)
 
 ## Coding structure
-The project is a simple POC, but yet, it uses great and very famous libraries, so in order for them to work together some
+The project is a simple POC, but yet, it uses very famous and incredible libraries, which are very used on the market. So in order for them to work together and display a good outcome, some patterns were needed:
+
+### Folders separation
+I used some separation patterns that I currently applied on my projects, which includes:
+
+**.env file located on the root of the project** - This file, like in every other project that has a ".env" file, is used to set some environment properties that the program will read and apply on its runtime execution. Below you can see some info set on this project environment:
+
+#### Env file keys
+**Image 7**
+
+![Env File](https://raw.githubusercontent.com/chocolover80/weather-related-areas-info-gather/main/documentation/images/env-file.PNG)
+**Here is a description for each value set on the env file:**
+
+**NODE_ENV:** This key defines the environment dev we are currently using, is useful when we build it on a docker image for example. When we build it we'll pass the flag, saying which env file the image shall read. 
+
+**PORT:** This is the port the application will run on (for default, React sets the port as 3000)
+
+**REACT_APP_GOOGLE_MAPS_API_KEY:** Here is where we set our API Key created on the Google Maps API.
+
+**REACT_APP_OWM_MAPS_API_KEY:** Here is where we set our API Key created on the Open Weather Map API.
+
+**REACT_APP_OWM_SURROUNDINGS_WEATHER_INFO:** Here we set the endpoint for the OWN API call, that gathers the 15 sorrounding cities weather data.
+
+#### Folders and other files structure
+**'src' folder** - This folder is the main folder, where every other folder and file for our application content management will follow in structure.
+
+**'components' folder** - This folder is where I put every component I create on the application, also, I like to separate the components inside this folder, on sub-folders. For example: Let's imagine you are creating an app that shows both weather information and historic info for cities. You will probably create many components for each functions, so I personaly would create at least to separated folders, one for the components which would manage the "Historic Info Data Gather" and the other to "Weather Info Data Gather".
+
+**Image 8**
+
+![Env File](https://raw.githubusercontent.com/chocolover80/weather-related-areas-info-gather/main/documentation/images/component-structure.PNG)
+
+**For a demonstration see this project structure print:**
+
+
+**'service' folder** - This folder contains the Services for the project, usually it helps to aggregate all the API calls, so we can just call an instance of it from another components and makes easier the management of the calls. For this project specifically, I only set on service, which is the OWM call manager:
+
+**Image 9**
+
+![Env File](https://raw.githubusercontent.com/chocolover80/weather-related-areas-info-gather/main/documentation/images/api-service.PNG)
+
+** Here we use axios to make the calls and set the endpoint query params via env files.
+
+**'store' folder** - This folder contains all the .js  files responsable for managing the state of the entire application via redux. It includes two sub-folders, the **actions** and the **reducers**, which respectively contains the functions for setting state info and retrieve it on other components. Here's the folder with redux objects set on the project:
+
+**Image 10**
+
+![Redux js files](https://raw.githubusercontent.com/chocolover80/weather-related-areas-info-gather/main/documentation/images/redux-js-files.PNG)
+
+**'store' folder** - This folder contains all the .js  files responsable for managing the state of the entire application via redux. It includes two sub-folders, the **actions** and the **reducers**, which respectively contains the functions for setting state info and retrieve it on other components. Here's the folder with redux objects set on the project:
+
+**'utils' folder** - This folder contains all the .js  files responsable for managing the utility features (like conversors, date manipulators etc.). Here's the folder with just one .js file, which is a helper, with the purpose to set a default location once the application is loaded up:
+
+**Image 11**
+
+![Utility js files](https://raw.githubusercontent.com/chocolover80/weather-related-areas-info-gather/main/documentation/images/utils-js-files.PNG)
+
+## Libraries used
+#### React.js
+A javascript framework focused on web development for user interfaces;
+#### Axios 
+A library that allows promise-based HTTP requests
+#### Redux
+A javascript framework to manage applications state.
+#### React-Redux
+A library that links both react and redux together to properly work
+#### dotenv
+A library to manipulate .env files inside the application.
+#### React Bootstrap
+The famous bootstrap front-end framework, but specifically reforged for React applications
+#### Font Awesome
+A front-end library of icons and fonts.
 
 
