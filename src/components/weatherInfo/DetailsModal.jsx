@@ -17,7 +17,7 @@ function DetailsModal(props) {
         show={cityWeatherDetails.isShowing}
         onHide={handleClose}
         centered
-        animation={true}
+        animation={false}
         size="lg"
       >
         <Modal.Header closeButton>

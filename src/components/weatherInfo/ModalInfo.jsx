@@ -56,7 +56,7 @@ function ModalInfo() {
       </div>
 
       <div>
-        <Modal show={show} onHide={handleClose} animation={true} size="xl">
+        <Modal show={show} onHide={handleClose} animation={false} size="xl">
           <Modal.Header closeButton>
             <Modal.Title>Weather information obtained</Modal.Title>
           </Modal.Header>

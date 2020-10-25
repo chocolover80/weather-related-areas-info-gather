@@ -17,7 +17,11 @@ function WeatherInfoCard(props) {
   const dispatch = useDispatch();
   function defineIcon(weatherDesc) {
     return weatherDesc === "light rain" ? (
-      faUmbrella
+      <FontAwesomeIcon
+        icon={faUmbrella}
+        size="3x"
+        style={{ color: "#92969c" }}
+      />
     ) : weatherDesc === "moderate rain" ? (
       <FontAwesomeIcon
         icon={faCloudRain}
@@ -39,7 +43,11 @@ function WeatherInfoCard(props) {
     ) : weatherDesc === "heavy intensity rain" ? (
       <FontAwesomeIcon icon={faBolt} size="3x" style={{ color: "#66696e" }} />
     ) : (
-      faQuestionCircle
+      <FontAwesomeIcon
+        icon={faQuestionCircle}
+        size="3x"
+        style={{ color: "#66696e" }}
+      />
     );
   }
   return (
@@ -58,7 +66,7 @@ function WeatherInfoCard(props) {
       >
         <div className="row">
           <div className="col-md-3 pl-4 pr-4">
-            <span>{defineIcon(props.description)}</span>
+            {defineIcon(props.description)}
           </div>
           <div className="col-md-9">
             <p>
