@@ -27,6 +27,7 @@ function ModalInfo() {
       );
       if (payload.status >= 400) {
         dispatch(WeatherInfoListActions.setErrors(payload.data));
+        dispatch(WeatherInfoListActions.setCurrentWeatherInfoList([]));
       } else {
         dispatch(WeatherInfoListActions.setErrors(""));
         dispatch(
@@ -35,6 +36,7 @@ function ModalInfo() {
       }
     } catch (error) {
       dispatch(WeatherInfoListActions.setErrors(error.message));
+      dispatch(WeatherInfoListActions.setCurrentWeatherInfoList([]));
     }
     setShow(true);
   };
