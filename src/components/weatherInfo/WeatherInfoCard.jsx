@@ -5,14 +5,14 @@ import "./css/weatherCard.css";
 function WeatherInfoCard(props) {
   return (
     <>
-      <div className="m-2 col-md-3 p-2 weatherCard">
+      <div className="m-2 col-lg-3 col-md-4 col-sm-6 p-2 weatherCard">
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-md-3 pl-3 pr-3">
             <span>
-              <FontAwesomeIcon icon={faSun} size="5x" />
+              <FontAwesomeIcon icon={faSun} size="3x" />
             </span>
           </div>
-          <div className="col-md-8">
+          <div className="col-md-9">
             <p>
               <b> {props.name} </b> <br />
               <span>{props.main}</span>

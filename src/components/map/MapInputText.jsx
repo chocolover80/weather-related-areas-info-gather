@@ -12,6 +12,13 @@ function MapInputText(props) {
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
               <FontAwesomeIcon icon={faGlobe} />
+              <b className="ml-1">
+                {label === "Latitude"
+                  ? "Lat"
+                  : label === "Longitude"
+                  ? "Lng"
+                  : ""}
+              </b>
             </span>
           </div>
           <input

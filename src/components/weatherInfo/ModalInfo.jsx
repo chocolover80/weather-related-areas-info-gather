@@ -17,15 +17,24 @@ function ModalInfo() {
   const handleClose = () => setShow(false);
   const handleShow = async () => {
     const pin = currentMapInfo.pin;
-    const payload = await WeatherInfoService.RetrieveWeatherInfoForCities(
-      pin.lat,
-      pin.lng,
-      15
-    );
-    if (payload.status >= 400) {
-      dispatch(WeatherInfoListActions.setErrors(payload.data));
-    } else {
-      dispatch(WeatherInfoListActions.setCurrentWeatherInfoList(payload.data));
+
+    try {
+      const payload = await WeatherInfoService.RetrieveWeatherInfoForCities(
+        pin.lat,
+        pin.lng,
+        15
+      );
+      if (payload.status >= 400) {
+        dispatch(WeatherInfoListActions.setErrors(payload.data));
+      } else {
+        dispatch(WeatherInfoListActions.setErrors(""));
+        dispatch(
+          WeatherInfoListActions.setCurrentWeatherInfoList(payload.data)
+        );
+      }
+    } catch (error) {
+      console.log("despachinho");
+      dispatch(WeatherInfoListActions.setErrors(error.message));
     }
     setShow(true);
   };
@@ -78,7 +87,9 @@ function ModalInfo() {
                 />
               ))
             ) : (
-              <></>
+              <>
+                <h3>No data found for the location</h3>
+              </>
             )}
           </div>
         </Modal.Body>
