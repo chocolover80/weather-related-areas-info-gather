@@ -1,37 +1,69 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import * as CityWeatherDetailsActions from "../../store/actions/cityWeatherDetails";
+import {
+  faQuestionCircle,
+  faUmbrella,
+  faCloudRain,
+  faCloudSun,
+  faSun,
+  faCloud,
+  faSmog,
+  faBolt,
+} from "@fortawesome/free-solid-svg-icons";
 import "./css/weatherCard.css";
 function WeatherInfoCard(props) {
+  const dispatch = useDispatch();
+  function defineIcon(weatherDesc) {
+    return weatherDesc === "light rain" ? (
+      faUmbrella
+    ) : weatherDesc === "moderate rain" ? (
+      <FontAwesomeIcon
+        icon={faCloudRain}
+        size="3x"
+        style={{ color: "#92969c" }}
+      />
+    ) : weatherDesc === "few clouds" ? (
+      <FontAwesomeIcon
+        icon={faCloudSun}
+        size="3x"
+        style={{ color: "#92969c" }}
+      />
+    ) : weatherDesc === "clear sky" ? (
+      <FontAwesomeIcon icon={faSun} size="3x" style={{ color: "#92969c" }} />
+    ) : weatherDesc === "broken clouds" ? (
+      <FontAwesomeIcon icon={faCloud} size="3x" style={{ color: "#66696e" }} />
+    ) : weatherDesc === "overcast clouds" ? (
+      <FontAwesomeIcon icon={faSmog} size="3x" style={{ color: "#66696e" }} />
+    ) : weatherDesc === "heavy intensity rain" ? (
+      <FontAwesomeIcon icon={faBolt} size="3x" style={{ color: "#66696e" }} />
+    ) : (
+      faQuestionCircle
+    );
+  }
   return (
     <>
-      <div className="m-2 col-lg-3 col-md-4 col-sm-6 p-2 weatherCard">
+      <div
+        className="m-2 col-lg-3 col-md-4 col-sm-6 p-2 weatherCard"
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          dispatch(CityWeatherDetailsActions.setIsShowing(true));
+          dispatch(
+            CityWeatherDetailsActions.setCurrentCityWeatherDetails({
+              ...props,
+            })
+          );
+        }}
+      >
         <div className="row">
-          <div className="col-md-3 pl-3 pr-3">
-            <span>
-              <FontAwesomeIcon icon={faSun} size="3x" />
-            </span>
+          <div className="col-md-3 pl-4 pr-4">
+            <span>{defineIcon(props.description)}</span>
           </div>
           <div className="col-md-9">
             <p>
               <b> {props.name} </b> <br />
               <span>{props.main}</span>
-              <br />
-              <span>{props.description}</span>
-              <br />
-              <span>Temp: {props.temp}</span>
-              <br />
-              <span>Feels like: {props.feelsLike}</span>
-              <br />
-              <span>Minimum of: {props.tempMin}</span>
-              <br />
-              <span>Maximum of: {props.tempMax}</span>
-              <br />
-              <span>Pressure: {props.pressure}</span>
-              <br />
-              <span>Humidity: {props.humidity}</span>
-              <br />
-              <span>Wind: {props.wind}</span>
               <br />
             </p>
           </div>

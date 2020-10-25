@@ -11,7 +11,9 @@ function Home() {
   );
   return (
     <>
-      <h1 className="pl-3"> My React App</h1>
+      <h3 className="pl-3" style={{ color: "#366cc2" }}>
+        Provide us yout LAT x LGN then search for weather data
+      </h3>
       <div className="row col-md-12 p-0 mx-auto">
         <MapInputText idInput="txtLatitude" inputCategory="latitude" />
         <MapInputText idInput="txtLongitude" inputCategory="longitude" />

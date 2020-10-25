@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "./css/modalInfo.css";
 import WeatherInfoCard from "./WeatherInfoCard";
+import DetailsModal from "./DetailsModal";
 import WeatherInfoService from "../../service/WeatherInfoService";
 import * as WeatherInfoListActions from "../../store/actions/citiesWeatherInformation";
 function ModalInfo() {
@@ -33,7 +34,6 @@ function ModalInfo() {
         );
       }
     } catch (error) {
-      console.log("despachinho");
       dispatch(WeatherInfoListActions.setErrors(error.message));
     }
     setShow(true);
@@ -55,50 +55,48 @@ function ModalInfo() {
         </button>
       </div>
 
-      <Modal show={show} onHide={handleClose} animation={false} size="xl">
-        <Modal.Header closeButton>
-          <Modal.Title>Weather information obtained</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>
-            Below you're gonna see the weather information gathered via
-            geolocation for the respective city and its surroundings:
-          </p>
-          <div
-            className="row modal-lane-top"
-            style={{ display: "flex", justifyContent: "center" }}
-          >
-            {currentWeatherInfoList &&
-            currentWeatherInfoList.list &&
-            currentWeatherInfoList.list.length > 0 ? (
-              currentWeatherInfoList.list.map((item, index) => (
-                <WeatherInfoCard
-                  key={index}
-                  name={item.name}
-                  main={item.weather[0].main}
-                  description={item.weather[0].description}
-                  temp={item.main.temp}
-                  feelsLike={item.main.feels_like}
-                  tempMin={item.main.temp_min}
-                  tempMax={item.main.temp_max}
-                  pressure={item.main.pressure}
-                  humidity={item.main.humidity}
-                  wind={`Speed: ${item.wind.speed} - Degrees: ${item.wind.deg}`}
-                />
-              ))
-            ) : (
-              <>
-                <h3>No data found for the location</h3>
-              </>
-            )}
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <div>
+        <Modal show={show} onHide={handleClose} animation={true} size="xl">
+          <Modal.Header closeButton>
+            <Modal.Title>Weather information obtained</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              Below you're gonna see the weather information gathered via
+              geolocation for the respective city and its surroundings:
+            </p>
+            <div
+              className="row modal-lane-top"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <DetailsModal />
+              {currentWeatherInfoList &&
+              currentWeatherInfoList.list &&
+              currentWeatherInfoList.list.length > 0 ? (
+                currentWeatherInfoList.list.map((item, index) => (
+                  <WeatherInfoCard
+                    key={index}
+                    name={item.name}
+                    main={item.weather[0].main}
+                    description={item.weather[0].description}
+                    tempMin={(item.main.temp_min - 273.15).toFixed(2) + " ºC"}
+                    tempMax={(item.main.temp_max - 273.15).toFixed(2) + " ºC"}
+                  />
+                ))
+              ) : (
+                <>
+                  <h3>No data found for the location</h3>
+                </>
+              )}
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
     </>
   );
 }
