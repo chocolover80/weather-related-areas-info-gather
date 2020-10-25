@@ -21,6 +21,8 @@ You will also see any lint errors in the console.
 
 ** The test and build scripts are also available, but they're not relevant for this POC, so no need to concern about it. For more info, see the [package.json](https://github.com/chocolover80/weather-related-areas-info-gather/blob/main/package.json) of the project. **
 
+![asaa](https://imgur.com/gallery/eeAD48C)
+
 ## Coding structure
 The project is a simple POC, but yet, it uses great and very famous libraries, so in order for them to work together some
 
