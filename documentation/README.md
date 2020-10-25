@@ -15,7 +15,7 @@ As told above, the project was generated via Create React App, so the default sc
 
 Runs the app in the development mode.<br />
 Open [http://localhost:<env_port_declared_on_env_file>]() to view it in the browser. Here I used a PORT declaration via .env file, it can be found on the 
- [.env inside the project](https://github.com/chocolover80/weather-related-areas-info-gather/blob/main/.env)
+ [.env inside the project](https://github.com/chocolover80/weather-related-areas-info-gather/blob/main/.env).
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
