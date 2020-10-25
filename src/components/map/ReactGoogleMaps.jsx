@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import * as MapInfoActions from "../../store/actions/mapInformation";
 import * as LocationSetter from "../../utils/locationSetter";
 import { useDispatch, useSelector } from "react-redux";
-import "./map.css";
+import "./css/map.css";
 
 function ReactGoogleMaps() {
   const mapInfo = useSelector((state) => state.mapInformation);

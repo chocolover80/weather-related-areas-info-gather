@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import * as MapInfoActions from "../../store/actions/mapInformation";
+import * as CitiesWeatherInfoActions from "../../store/actions/citiesWeatherInformation";
 function MapButton(props) {
   const dispatch = useDispatch();
 
@@ -33,6 +34,7 @@ function MapButton(props) {
       }
     } else if (id === "btnRem") {
       dispatch(MapInfoActions.setCurrentPinInfo({}));
+      dispatch(CitiesWeatherInfoActions.setCurrentWeatherInfoList([]));
     }
   }
 
